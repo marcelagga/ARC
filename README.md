@@ -16,8 +16,8 @@ understanding of them. An example can be find in the solution for c8cbb738,
 in which the algorithm has to check for the different colour counts on the grid and do
 different groupings according to this.
 
-I imagine that in order to have a solution with some sense of intelligence, the algorithm should be able
-to use each of the Core Knowledge priors and use them to provide the solution.
+I believe that in order to have a solution with some sense of intelligence, the algorithm should be able
+to understand each of the Core Knowledge priors and use them to provide the solution.
 
 See below the original READ ME for better understanding of this repository:
 
