@@ -9,7 +9,7 @@ As my solution is not able to generalise, the implementation provided in here ha
 intelligence when thinking of modern definitions as seen on "On the Measure of Intelligence."
 Additionally, there is no 'learning' involved in any of the tasks.
 
-However, providing a hand-coded solution for these tasks and implementing them,
+However, providing a hand-coded solution and implementing these tasks,
 helped me to understand the different concepts of Objectness priors, Goal-directedness priors, Numbers
 and Counting priors and Basic Geometry and Topology priors and how a computer would have some
 understanding of them. An example can be find in the solution for c8cbb738,
