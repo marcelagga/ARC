@@ -1,4 +1,4 @@
-#Changes done to the original repository:
+# Changes done to the original repository:
 
 In this repository, I have modified manual_solve.py in order to solve 776ffc46, c8cbb738 and 73251a56.
 
