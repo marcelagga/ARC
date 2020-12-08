@@ -1,4 +1,26 @@
-# Test New Readme
+#Changes done to the original repository:
+
+In this repository, I have modified manual_solve.py in order to solve 776ffc46, c8cbb738 and 73251a56.
+
+Each solution has been designed to individually solve one task. In this way, this solution has just
+some sense of intelligence under Minsky's definition or a similiar task-specific skills definition.
+
+As my solution is not able to generalise, the implementation provided in here has very low
+intelligence when thinking of modern definitions as seen on "On the Measure of Intelligence."
+Additionally, there is no 'learning' involved in any of the tasks.
+
+However, providing a hand-coded solution for these tasks and implementing them,
+helped me to understand the different concepts of Objectness priors, Goal-directedness priors, Numbers
+and Counting priors and Basic Geometry and Topology priors and how a computer would have some
+understanding of them. An example can be find in the solution for c8cbb738,
+in which the algorithm has to check for the different colour counts on the grid and do
+different groupings according to this.
+
+I imagine that in order to have a solution with some sense of intelligence, the algorithm should be able
+to use each of the Core Knowledge priors and use them to provide the solution.
+
+See below the original READ ME for better understanding of this repository:
+
 # The Abstraction and Reasoning Corpus (ARC)
 
 This repository contains the ARC task data, as well as a browser-based interface for humans to try their hand at solving the tasks manually.
