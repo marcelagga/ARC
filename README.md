@@ -19,7 +19,7 @@ different groupings according to this.
 I believe that in order to have a solution with some sense of intelligence, the algorithm should be able
 to understand each of the Core Knowledge priors and use them to provide the solution.
 
-See below the original READ ME for better understanding of this repository:
+Original READ ME for better understanding of this repository:
 
 # The Abstraction and Reasoning Corpus (ARC)
 
