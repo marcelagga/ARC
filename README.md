@@ -8,8 +8,7 @@ and will not generalise to others.
 
 As seen on "On the Measure of Intelligence", Minky's definition or a similiar task-specific skills definition
 could consider an agent capable to provide this solution **intelligent**. However, an agent with just this skills
-would not be considered **intelligent** under more modern definitions as it is not able to generalise and
-there is no learning involved by the agent.
+would not be considered **intelligent** under more modern definitions as it is not able to generalise.
 
 Finally, implementing a hand-coded solution helped me to have better understanding of the Core Knowledge priors and
 how a machine would be able to interpret them.  An example can be found in c8cbb738, in which the counts of colours
