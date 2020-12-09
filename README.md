@@ -21,6 +21,11 @@ an understanding of each of the Core Knowledge priors and use them to understand
 
 Original READ ME for better understanding of this repository:
 
+## Chosen Tasks
+###Task 776ffc46
+
+![test space](/images/776ffc46.png)
+
 # The Abstraction and Reasoning Corpus (ARC)
 
 This repository contains the ARC task data, as well as a browser-based interface for humans to try their hand at solving the tasks manually.
