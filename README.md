@@ -12,7 +12,7 @@ would not be considered **intelligent** under more modern definitions as it is n
 
 Finally, implementing a hand-coded solution helped me to have better understanding of the Core Knowledge priors and
 how a machine would be able to interpret them.  An example can be found in c8cbb738, in which the counts of colours
-of the grid used in my solution could help an AI agent to have better understanding of the environment (Numbers
+of the grid used from my solution could help an AI agent to have better understanding of the environment (Numbers
 and Counting priors).
 
 I believe that in order to have a solution with some sense of intelligence, the algorithm should be able
