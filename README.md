@@ -17,7 +17,7 @@ how a machine would be able to interpret them.  Examples of this are:
 
 
 I believe that in order to have a solution with a modern sense of intelligence, the agent should be able to have
-an understanding of each of the Core Knowledge priors and to use them to understand the transformations from the train set.
+an understanding of each of the Core Knowledge priors and use them to understand the transformations from the train set.
 
 Original READ ME for better understanding of this repository:
 
