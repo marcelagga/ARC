@@ -14,82 +14,24 @@ Link Github: https://github.com/marcelagga/ARC.git
 
 Summary:
 
-First, each task identifies a specific figure(s),colour(s) or pattern(s).
-This information is stored in lists or dictionaries. Finally, the main input
-array is processed and the final solution is returned.
+First, each function identifies a specific figure(s),colour(s) or pattern(s).
+This information is stored in lists or dictionaries and used to process
+the input array into the final solution.
 
-Numpy functions such as numpy.where and numpy.ndenumerate are an efficient
-way to do this first identification and to process the input array. Array
-slicing has been used multiple times when searching for figures and patterns
-within the input array.
+Numpy functions such as numpy.where and numpy.ndenumerate have been used in
+a similar way to do the first identification and processing of the input array.
+Array slicing has been used multiple times when searching for figures and
+patterns within the input array.
 
 Python iterable objects are common accross the three solutions and used to
-store colours, indexes and relations between them. Lists comprehension and
-dictionaries comprehension helps the readability of the code.
+store colours, indexes and relations between them. The usage of
+lists comprehension and dictionaries comprehension helped the readability of
+the code.
 
-While an additional library, Counter, is used to solve c8cbb738, the use
+While an additional library, Counter, is used to solve c8cbb738, the usage
 of this library is very specific and just used to determine the most
 common value on the grid.
 """
-
-def solve_776ffc46(x):
-    """
-    The square in the grid contains a figure that has a certain colour.
-    The solution changes the colour of all figures exactly matching the one in
-    the square to that same colour.
-
-    The algorithm solves all train and test grids correctly
-    """
-    def find_grey_square(x):
-        edge = len(x)
-        for (row,col),colour in np.ndenumerate(x):
-            if (colour == 5 and row+1 < edge and col+1 < edge):
-                if (x[(row+1,col)] == 5 and x[(row,col+1)] == 5):
-                    d_row,d_col = row+1,col+1
-                    while (d_row != edge and d_col != edge and x[d_row,d_col]!=5):
-                        d_row+=1
-                        d_col+=1
-                    if (d_row != edge and d_col != edge):
-                        return ((row,col),(d_row,d_col),(row,d_col),(d_row,col))
-
-    def return_inside_square(x):
-        A,B,C,D = find_grey_square(x)
-        return x[A[0]+1:B[0],A[1]+1:B[1]]
-
-    def crop_square(x):
-        return (x[~np.all(x == 0, axis=1)])[:,~np.all(x == 0, axis=0)]
-
-    def find_colour_figure(x):
-        return [c for c in x.flatten() if c!=0][0]
-
-    def get_figure_square(x,square):
-        inside =  crop_square(square)
-        colour = find_colour_figure(inside)
-        num_rows = inside.shape[0] + 2
-        num_cols = inside.shape[1] + 2
-        pattern = np.zeros((num_rows,num_cols))
-        pattern[1:num_rows-1,1:num_cols-1] = inside
-        return np.where(pattern == colour,1,pattern),colour
-
-    def find_and_update_matching_figures(figure,colour,x):
-        f_rows,f_cols = figure.shape
-        for row in range(0,len(x)-(f_rows-1)):
-            for col in range(0,len(x)-(f_cols-1)):
-                sub_array = x[row:row+f_rows,col:col+f_cols]
-                if np.all(sub_array == figure):
-                    x[row:row+f_rows,col:col+f_cols] = np.where(sub_array ==1,colour,sub_array)
-        return x
-
-    #Finds the only square that is in the grid (its diagonal has to be
-    #in the grid)
-    square = return_inside_square(x)
-    #Returns the figure inside the square and its colour
-    figure,colour = get_figure_square(x,square)
-    #Iterates through all subgrids of the size of the figure
-    #If the subgrid matches the figure, updates the colours to the correct one
-    x = find_and_update_matching_figures(figure,colour,x)
-    return x
-
 
 def solve_c8cbb738(x):
     """
@@ -151,17 +93,15 @@ def solve_c8cbb738(x):
     #Finds all other colours and its coordinates
     colours_coordinates = get_colours_coordinates(x,background_colour)
     #Determines which figure each set of coordinates represents
-    #0 - rhombus, 1 - square, 2 & 3 - rectangles
+    #[0 - rhombus, 1 - square, 2 & 3 - rectangles]
     figures = get_figures(colours_coordinates)
     #Starts solution with all colours set to background
     solution = init_solution(colours_coordinates,background_colour)
-
+    #Iterates through each figure and updates the colours of the solution accordingly
 
     end_p = len(solution)-1
     mid_p = int((len(solution)-1)/2)
 
-    #Iterates through each figure and updates the colours of the solution
-    #accordingly
     for figure in figures:
         if figure == 0:
             coordinates_rhombus = [(0,mid_p),(mid_p,0),(mid_p,end_p),(end_p,mid_p)]
@@ -188,11 +128,11 @@ def solve_73251a56(x):
 
     The algorithm solves all train and test grids correctly
     """
-    def find_coordinates_missing_colour(x):
+    def get_coordinates_missing_colour(x):
         coordinates = np.where(x == 0)
         return list(zip(coordinates[0], coordinates[1]))
 
-    def find_sequence_colours(x):
+    def get_sequence_colours(x):
         sequence_colours = [x[0,1]]
         first_line = x[0,2:]
         i = 0
@@ -201,7 +141,7 @@ def solve_73251a56(x):
             i=i+1
         return sequence_colours
 
-    def find_colour_coordinate(coordinate,sequence_colours):
+    def get_colour_coordinate(coordinate,sequence_colours):
         (p_row,p_col) = coordinate
         if x[p_col,p_row]:
             return x[p_col,p_row]
@@ -214,15 +154,66 @@ def solve_73251a56(x):
         return sequence_colours[colour]
 
     #Finds the sequence of colours that the figure follows
-    sequence_colours = find_sequence_colours(x)
+    sequence_colours = get_sequence_colours(x)
     #Finds all missing colours from the input grid
-    coordinates_missing_colours = find_coordinates_missing_colour(x)
-    #Iterates through all coordinates with missing colours
-    #and updates the colour of them to the correct one
+    coordinates_missing_colours = get_coordinates_missing_colour(x)
+    #Iterates through all coordinates with missing colours and updates the
+    #colour of them to the correct one
     for coordinate in coordinates_missing_colours:
-        x[coordinate] = find_colour_coordinate(coordinate,sequence_colours)
+        x[coordinate] = get_colour_coordinate(coordinate,sequence_colours)
 
     return x
+
+
+def solve_776ffc46(x):
+    """
+    The square in the grid contains a figure that has a certain colour.
+    The transformation changes the colour of all figures matching exactly the
+    one in square to that same colour.
+
+    The algorithm solves all train and test grids correctly
+    """
+    def get_square_coordinates(x):
+        edge = len(x)
+        for (row,col),colour in np.ndenumerate(x):
+            if (colour == 5 and row+1 < edge and col+1 < edge):
+                if (x[(row+1,col)] == 5 and x[(row,col+1)] == 5):
+                    d_row,d_col = row+1,col+1
+                    while (d_row != edge and d_col != edge and x[d_row,d_col]!=5):
+                        d_row+=1
+                        d_col+=1
+                    if (d_row != edge and d_col != edge):
+                        return ((row,col),(d_row,d_col),(row,d_col),(d_row,col))
+
+    def get_inside_square(x,square_coordinates):
+        A,B,C,D = square_coordinates
+        return x[A[0]+1:B[0],A[1]+1:B[1]]
+
+    def get_figure_inside_square(x,square):
+        figure_cropped =  (square[~np.all(square == 0, axis=1)])[:,~np.all(square == 0, axis=0)]
+        figure_colour = [c for c in figure_cropped.flatten() if c!=0][0]
+        num_rows,num_cols = figure_cropped.shape[0] + 2,figure_cropped.shape[1] + 2
+        figure_with_margins = np.zeros((num_rows,num_cols))
+        figure_with_margins[1:num_rows-1,1:num_cols-1] = np.where(figure_cropped == figure_colour,1,figure_cropped)
+        return figure_with_margins,figure_colour
+
+
+    #Finds the coordinates of the square (its diagonal has to be in the grid)
+    square_coordinates = get_square_coordinates(x)
+    #Finds the subgrid within the square
+    inside_square = get_inside_square(x,square_coordinates)
+    #Finds the figure inside the square and its colour
+    figure,colour = get_figure_inside_square(x,inside_square)
+    #Iterates through all subgrids of the size of the figure. If the subgrid matches the figure, updates the colours to the correct one
+    f_rows,f_cols = figure.shape
+    for row in range(0,len(x)-(f_rows-1)):
+        for col in range(0,len(x)-(f_cols-1)):
+            sub_array = x[row:row+f_rows,col:col+f_cols]
+            if np.all(sub_array == figure):
+                x[row:row+f_rows,col:col+f_cols] = np.where(sub_array ==1,colour,sub_array)
+    return x
+
+
 
 def main():
     # Find all the functions defined in this file whose names are
