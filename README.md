@@ -2,21 +2,22 @@
 
 In this repository, I have modified manual_solve.py in order to solve 776ffc46, c8cbb738 and 73251a56.
 
-The aim of this implementation is to have a better understanding of ARC and not to present
-an agent able to solve multiple tasks. Each solution has been designed to individually solve one task
+The aim of this implementation is not to present an agent able to solve multiple tasks
+but to have a better understanding of ARC. Each solution has been designed to individually solve one task
 and will not generalise to others.
 
 As seen on "On the Measure of Intelligence", Minky's definition or a similiar task-specific skills definition
 could consider an agent capable to provide this solution **intelligent**. However, an agent with just this skills
 would not be considered **intelligent** under more modern definitions as it is not able to generalise.
 
-Finally, implementing a hand-coded solution helped me to have better understanding of the Core Knowledge priors and
-how a machine would be able to interpret them.  An example can be found in c8cbb738, in which the counts of colours
-of the grid used from my solution could help an AI agent to have better understanding of the environment (Numbers
-and Counting priors).
+Implementing a hand-coded solution helped me to have better understanding of the Core Knowledge priors and
+how a machine would be able to interpret them.  Examples of this are:
+- *Number and Counting*: The number from each colour in the grid helped to solve c8cbb738.
+- *Basic Geometry and Topology*: Identifying a square shape and the figure contained inside to solve 776ffc46 and using symmetry to efficiently find some colours in 73251a56.
 
-I believe that in order to have a solution with some sense of intelligence, the algorithm should be able
-to understand each of the Core Knowledge priors and use them to provide the correct solution.
+
+I believe that in order to have a solution with a modern sense of intelligence, the agent should be able to have
+an understanding of each of the Core Knowledge priors and to use them to understand the transformations from the train set.
 
 Original READ ME for better understanding of this repository:
 
