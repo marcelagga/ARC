@@ -10,7 +10,7 @@ from collections import Counter
 """
 Student Name: Marcel Aguilar Garcia
 ID Number: 20235620
-Link Github: https://github.com/marcelagga/ARC.git
+GitHub Link: https://github.com/marcelagga/ARC.git
 
 Summary:
 
