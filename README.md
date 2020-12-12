@@ -12,9 +12,10 @@ would not be considered **intelligent** under more modern definitions as it is n
 
 Implementing a hand-coded solution helped me to have better understanding of the Core Knowledge priors and
 how a machine would be able to interpret them.  Examples of this are:
-- *Number and Counting*: The number from each colour in the grid helped to solve c8cbb738.
-- *Basic Geometry and Topology*: Identifying a square shape and the figure contained inside to solve 776ffc46 and using symmetry to efficiently find some colours in 73251a56.
-
+- *Number and Counting*: In c8cbb738, figures are represented by four coordinates of the same colour. The counts and groupings of the different colours on the grid could help an AI agent
+to find a solution.
+- *Basic Geometry and Topology*: In 776ffc46, the solve function searches for a specific figure (square) in the grid. An AI agent should be able to find and identify the different figures in the grid in order
+to find a solution. Finally, in 73251a56, the use and understanding of symmetry helps to find a solution efficiently. 
 
 I believe that in order to have a solution with a modern sense of intelligence, the agent should be able to have
 an understanding of each of the Core Knowledge priors and use them to understand the transformations from the train set.
